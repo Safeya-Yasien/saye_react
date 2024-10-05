@@ -4,6 +4,8 @@ import {
   Landing,
   OurEvents,
   HowItWorks,
+  SupportCompanies,
+  Testimonials,
 } from "@/components/saye/homeComponents";
 
 const Home = () => {
@@ -14,6 +16,8 @@ const Home = () => {
       <OurEvents />
       <CounterArea />
       <HowItWorks />
+      <SupportCompanies/>
+      <Testimonials/>
     </div>
   );
 };
