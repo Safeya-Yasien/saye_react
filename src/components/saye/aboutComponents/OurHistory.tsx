@@ -33,7 +33,7 @@ const OurHistory = () => {
   ];
 
   return (
-    <section className="history  py-16 bg-white">
+    <section className="history  py-16 bg-gray-100">
       <div className="container mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-6">
