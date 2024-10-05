@@ -1,9 +1,17 @@
-import React from 'react'
+import {
+  OurHistory,
+  OurServices,
+  OurVision,
+} from "@/components/saye/aboutComponents";
 
 const About = () => {
   return (
-    <div>About</div>
-  )
-}
+    <div className="pt-24">
+      <OurVision />
+      <OurServices />
+      <OurHistory />
+    </div>
+  );
+};
 
-export default About
+export default About;
