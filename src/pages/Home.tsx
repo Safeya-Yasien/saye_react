@@ -16,9 +16,8 @@ const Home = () => {
       <OurEvents />
       <CounterArea />
       <HowItWorks />
-      <SupportCompanies/>
-      <Testimonials/>
-      
+      <SupportCompanies />
+      <Testimonials />
     </div>
   );
 };

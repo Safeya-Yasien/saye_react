@@ -36,7 +36,7 @@ const Header = () => {
 
   return (
     <header>
-      <nav className="bg-gray-100 position-fixed w-full z-3 shadow-lg">
+      <nav className="bg-gray-100 fixed w-full top-0 left-0 z-50 shadow-lg">
         <div className="px-8 flex items-center justify-between">
           <div className="flex items-center gap-4 relative">
             <button className={cn("lg:hidden")} onClick={toggleMenu}>
