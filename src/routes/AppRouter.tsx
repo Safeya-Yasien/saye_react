@@ -4,6 +4,7 @@ import {
   Donate,
   Error,
   Home,
+  JoinUs,
   Login,
   Register,
   VolunteerOpportunity,
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "/donate",
         element: <Donate />,
+      },
+      {
+        path: "/join-us",
+        element: <JoinUs />,
       },
     ],
   },

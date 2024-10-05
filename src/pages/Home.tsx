@@ -1,11 +1,12 @@
-import { Landing } from "@/components/saye/homeComponents"
+import { AboutSayee, Landing } from "@/components/saye/homeComponents";
 
 const Home = () => {
   return (
     <div>
-      <Landing/>
+      <Landing />
+      <AboutSayee />
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;
