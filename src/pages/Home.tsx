@@ -1,12 +1,19 @@
-import { AboutSayee, CounterArea, Landing, OurEvents } from "@/components/saye/homeComponents";
+import {
+  AboutSayee,
+  CounterArea,
+  Landing,
+  OurEvents,
+  HowItWorks,
+} from "@/components/saye/homeComponents";
 
 const Home = () => {
   return (
     <div>
       <Landing />
       <AboutSayee />
-      <OurEvents/>
-      <CounterArea/>
+      <OurEvents />
+      <CounterArea />
+      <HowItWorks />
     </div>
   );
 };
