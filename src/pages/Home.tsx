@@ -1,4 +1,4 @@
-import { AboutSayee, Landing, OurEvents } from "@/components/saye/homeComponents";
+import { AboutSayee, CounterArea, Landing, OurEvents } from "@/components/saye/homeComponents";
 
 const Home = () => {
   return (
@@ -6,6 +6,7 @@ const Home = () => {
       <Landing />
       <AboutSayee />
       <OurEvents/>
+      <CounterArea/>
     </div>
   );
 };
