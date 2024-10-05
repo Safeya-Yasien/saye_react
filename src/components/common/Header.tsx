@@ -3,6 +3,7 @@ import logo from "@assets/logo2.svg";
 import { ReactNode, useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
 import cn from "@/lib/utils";
+import CustomLink from "./CustomLink";
 
 type TNavigationItemProps = {
   to: string;
@@ -61,13 +62,7 @@ const Header = () => {
             <NavigationItem to="/donate">التبرعات</NavigationItem>
             <NavigationItem to="/contact">اتصل بنا</NavigationItem>
           </ul>
-          <Link
-            className="bg-myGreen-dark text-white text-sm rounded-2xl font-bold px-5 py-2 
-         transition-all  hover:bg-myGreen-hover"
-            to="/login"
-          >
-            تسجيل الدخول
-          </Link>
+          <CustomLink link={"/login"} text={"تسجيل الدخول"} />
         </div>
       </nav>
     </header>

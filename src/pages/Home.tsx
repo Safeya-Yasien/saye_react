@@ -1,8 +1,10 @@
-import React from 'react'
+import { Landing } from "@/components/saye/homeComponents"
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <div>
+      <Landing/>
+    </div>
   )
 }
 

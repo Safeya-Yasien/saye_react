@@ -4,7 +4,7 @@ import Login from "./Login";
 import Register from "./Register";
 import Contact from "./Contact";
 import Donate from "./Donate";
-
+import JoinUs from "./JoinUs";
 import About from "./About";
 
 import VolunteerOpportunity from "./VolunteerOpportunity";
@@ -18,4 +18,5 @@ export {
   Donate,
   VolunteerOpportunity,
   About,
+  JoinUs,
 };
