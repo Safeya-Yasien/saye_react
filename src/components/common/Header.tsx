@@ -8,6 +8,7 @@ import CustomLink from "./CustomLink";
 type TNavigationItemProps = {
   to: string;
   children: ReactNode;
+  onClick: () => void;
 };
 
 const Logo = () => (
@@ -16,11 +17,12 @@ const Logo = () => (
   </Link>
 );
 
-const NavigationItem = ({ to, children }: TNavigationItemProps) => (
+const NavigationItem = ({ to, children, onClick }: TNavigationItemProps) => (
   <li className="w-full lg:w-auto   ">
     <Link
       className="text-gray-600 hover:bg-gray-200 w-full py-3 px-4  block"
       to={to}
+      onClick={onClick}
     >
       {children}
     </Link>
@@ -32,6 +34,10 @@ const Header = () => {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
@@ -54,13 +60,13 @@ const Header = () => {
               }
             )}
           >
-            <NavigationItem to="/">الرئيسية</NavigationItem>
-            <NavigationItem to="/about">مبادراتنا</NavigationItem>
-            <NavigationItem to="/volunteer-opportunity">
+            <NavigationItem to="/" onClick={closeMenu}>الرئيسية</NavigationItem>
+            <NavigationItem to="/about" onClick={closeMenu}>مبادراتنا</NavigationItem>
+            <NavigationItem to="/volunteer-opportunity" onClick={closeMenu}>
               فرص التطوع
             </NavigationItem>
-            <NavigationItem to="/donate">التبرعات</NavigationItem>
-            <NavigationItem to="/contact">اتصل بنا</NavigationItem>
+            <NavigationItem to="/donate" onClick={closeMenu}>التبرعات</NavigationItem>
+            <NavigationItem to="/contact" onClick={closeMenu}>اتصل بنا</NavigationItem>
           </ul>
           <CustomLink link={"/login"} text={"تسجيل الدخول"} />
         </div>
