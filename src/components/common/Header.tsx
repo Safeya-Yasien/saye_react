@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom"; // Updated import
 import logo from "@assets/logo2.svg";
 import { ReactNode, useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
@@ -18,14 +18,18 @@ const Logo = () => (
 );
 
 const NavigationItem = ({ to, children, onClick }: TNavigationItemProps) => (
-  <li className="w-full lg:w-auto   ">
-    <Link
-      className="text-gray-600 hover:bg-gray-200 w-full py-3 px-4  block"
+  <li className="w-full lg:w-auto">
+    <NavLink
+      className={({ isActive }) =>
+        cn("text-gray-600 w-full py-3 px-4 block", {
+          "bg-myGreen-dark text-white": isActive,
+        })
+      }
       to={to}
       onClick={onClick}
     >
       {children}
-    </Link>
+    </NavLink>
   </li>
 );
 
@@ -60,13 +64,21 @@ const Header = () => {
               }
             )}
           >
-            <NavigationItem to="/" onClick={closeMenu}>الرئيسية</NavigationItem>
-            <NavigationItem to="/about" onClick={closeMenu}>مبادراتنا</NavigationItem>
+            <NavigationItem to="/" onClick={closeMenu}>
+              الرئيسية
+            </NavigationItem>
+            <NavigationItem to="/about" onClick={closeMenu}>
+              مبادراتنا
+            </NavigationItem>
             <NavigationItem to="/volunteer-opportunity" onClick={closeMenu}>
               فرص التطوع
             </NavigationItem>
-            <NavigationItem to="/donate" onClick={closeMenu}>التبرعات</NavigationItem>
-            <NavigationItem to="/contact" onClick={closeMenu}>اتصل بنا</NavigationItem>
+            <NavigationItem to="/donate" onClick={closeMenu}>
+              التبرعات
+            </NavigationItem>
+            <NavigationItem to="/contact" onClick={closeMenu}>
+              اتصل بنا
+            </NavigationItem>
           </ul>
           <CustomLink link={"/login"} text={"تسجيل الدخول"} />
         </div>
