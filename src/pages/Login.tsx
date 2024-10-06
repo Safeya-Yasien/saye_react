@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="py-24 absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 ">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
       <div className="container mx-auto max-w-4xl bg-white rounded-lg shadow-lg">
         <div className="flex items-center justify-between gap-8 p-4">
           <div className="w-full lg:w-1/2">
