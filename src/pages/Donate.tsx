@@ -15,7 +15,7 @@ const Donate = () => {
         </div>
       </div>
 
-<DonateForm/>
+      <DonateForm />
     </div>
   );
 };
