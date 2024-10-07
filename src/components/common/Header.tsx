@@ -80,7 +80,7 @@ const Header = () => {
               اتصل بنا
             </NavigationItem>
           </ul>
-          <CustomLink link={"/login"} text={"تسجيل الدخول"} />
+          <CustomLink link={"/auth/login"} text={"تسجيل الدخول"} />
         </div>
       </nav>
     </header>

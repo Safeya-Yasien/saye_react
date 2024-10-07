@@ -5,12 +5,11 @@ import {
   Error,
   Home,
   JoinUs,
-  Login,
-  Register,
   VolunteerOpportunity,
 } from "@/pages";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Login, Register } from "@/pages/auth";
 
 const router = createBrowserRouter([
   {
@@ -23,12 +22,17 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/login",
-        element: <Login />,
-      },
-      {
-        path: "/register",
-        element: <Register />,
+        path: "/auth",
+        children: [
+          {
+            path: "login",
+            element: <Login />,
+          },
+          {
+            path: "register",
+            element: <Register />,
+          },
+        ],
       },
       {
         path: "/about",
