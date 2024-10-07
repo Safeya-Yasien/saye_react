@@ -1,8 +1,10 @@
 import cn from "@/lib/utils";
 import { useRegisterMutation } from "@/redux/features/auth/authApiSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import RegisterSchema from "./RegisterSchema";
 
 type TRegisterInputsProps = {
   first_name: string;
@@ -20,7 +22,9 @@ const RegisterForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<TRegisterInputsProps>();
+  } = useForm<TRegisterInputsProps>({
+    resolver: zodResolver(RegisterSchema),
+  });
 
   const onSubmit: SubmitHandler<TRegisterInputsProps> = async (data) => {
     try {
