@@ -24,8 +24,9 @@ const RegisterForm = () => {
 
   const onSubmit: SubmitHandler<TRegisterInputsProps> = async (data) => {
     try {
-      const result = await registerUser(data);
-      await registerUser(data);
+      const { first_name, last_name, email, password } = data;
+      const username = `${first_name} ${last_name}`;
+      const result = await registerUser({ username, email, password });
       console.log("Registration successful:", result);
     } catch (err) {
       console.error("Registration failed:", err);
