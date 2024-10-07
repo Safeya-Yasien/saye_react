@@ -22,7 +22,14 @@ export const authApiSlice = apiSlice.injectEndpoints({
         method: "POST",
       }),
     }),
+    sendResetEmail: builder.mutation({
+      query: (email) => ({
+        url: "/auth/reset-password",
+        method: "POST",
+        body: { email },
+      }),
+    }),
   }),
 });
-export const { useRegisterMutation, useLoginMutation, useSendLogoutMutation } =
+export const { useRegisterMutation, useLoginMutation, useSendLogoutMutation, useSendResetEmailMutation } =
   authApiSlice;

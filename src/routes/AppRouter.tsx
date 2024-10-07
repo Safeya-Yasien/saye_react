@@ -9,7 +9,7 @@ import {
 } from "@/pages";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Login, Register } from "@/pages/auth";
+import { Login, PasswordReset, Register } from "@/pages/auth";
 
 const router = createBrowserRouter([
   {
@@ -22,7 +22,7 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/auth",
+        path: "auth",
         children: [
           {
             path: "login",
@@ -32,22 +32,26 @@ const router = createBrowserRouter([
             path: "register",
             element: <Register />,
           },
+          {
+            path: "reset-password",
+            element: <PasswordReset />,
+          },
         ],
       },
       {
-        path: "/about",
+        path: "about",
         element: <About />,
       },
       {
-        path: "/volunteer-opportunity",
+        path: "volunteer-opportunity",
         element: <VolunteerOpportunity />,
       },
       {
-        path: "/contact",
+        path: "contact",
         element: <Contact />,
       },
       {
-        path: "/donate",
+        path: "donate",
         element: <Donate />,
       },
       {

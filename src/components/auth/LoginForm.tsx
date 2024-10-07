@@ -58,7 +58,7 @@ const LoginForm = () => {
           <p className="text-red-500 text-sm">{errors.password?.message}</p>
         )}
       </div>
-      <Link to="#" className="hover:underline block mb-3">
+      <Link to="/auth/reset-password" className="hover:underline block mb-3">
         هل نسيت كلمة المرور..؟
       </Link>
       <Link to="/auth/register" className="hover:underline block mb-5">

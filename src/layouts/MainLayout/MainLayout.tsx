@@ -13,14 +13,18 @@ const MainLayout = () => {
     return null;
   };
 
-  const noFooterPaths = ["/login", "/register"];
-
+  const noFooterPaths = [
+    "/auth/login",
+    "/auth/register",
+    "/auth/reset-password",
+  ];
+  const shouldShowFooter = !noFooterPaths.includes(pathname);
   return (
     <div>
       <Header />
       <ScrollToTop />
       <Outlet />
-      {!noFooterPaths.includes(pathname) && <Footer />}
+      {shouldShowFooter && <Footer />}
     </div>
   );
 };
