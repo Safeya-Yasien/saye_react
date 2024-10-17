@@ -1,12 +1,13 @@
-import { useSendResetEmailMutation } from "@/redux/features/auth/authApiSlice"; // Ensure this API slice has a mutation for sending reset email
+import axios from "axios";
 import { SubmitHandler, useForm } from "react-hook-form";
 
 type TResetEmail = {
   email: string;
 };
 
+const baseUrl = import.meta.env.VITE_BASE_URL;
+
 const PasswordResetForm = () => {
-  const [sendResetEmail] = useSendResetEmailMutation(); // Assuming this mutation exists in your API slice
   const {
     register,
     handleSubmit,
@@ -15,7 +16,7 @@ const PasswordResetForm = () => {
 
   const onSubmit: SubmitHandler<TResetEmail> = async (data) => {
     try {
-      const result = await sendResetEmail(data);
+      const result = await axios.post(`${baseUrl}/auth/login`, data);
       console.log("Reset email sent:", result);
     } catch (err) {
       console.error("Failed to send reset email:", err);

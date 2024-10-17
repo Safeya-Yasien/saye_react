@@ -1,6 +1,9 @@
-import { useLoginMutation } from "@/redux/features/auth/authApiSlice";
+import axios from "axios";
+import Cookies from "js-cookie";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 type TLoginCredentials = {
   email: string;
@@ -8,19 +11,30 @@ type TLoginCredentials = {
 };
 
 const LoginForm = () => {
-  const [loginUser] = useLoginMutation();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<TLoginCredentials>();
 
-  const onSubmit: SubmitHandler<{ email: string; password: string }> = async (
-    data
-  ) => {
+  const onSubmit: SubmitHandler<TLoginCredentials> = async (data) => {
     try {
-      const result = await loginUser(data);
-      console.log("Login successful:", result);
+      const response = await axios.post(
+        `${baseUrl}/auth/login`,
+        {},
+        {
+          headers: {
+            email: data.email,
+            password: data.password,
+          },
+        }
+      );
+      Cookies.set("token", response.data.token, {
+        secure: true,
+        sameSite: "Strict",
+      });
+      navigate("/");
     } catch (err) {
       console.error("Login failed:", err);
     }

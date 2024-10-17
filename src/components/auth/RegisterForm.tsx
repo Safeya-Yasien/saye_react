@@ -1,10 +1,12 @@
 import cn from "@/lib/utils";
-import { useRegisterMutation } from "@/redux/features/auth/authApiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import RegisterSchema from "./RegisterSchema";
+import axios from "axios";
+
+const baseUrl = import.meta.env.VITE_BASE_URL;
 
 type TRegisterInputsProps = {
   first_name: string;
@@ -16,7 +18,8 @@ type TRegisterInputsProps = {
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [registerUser] = useRegisterMutation();
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -29,16 +32,28 @@ const RegisterForm = () => {
   const onSubmit: SubmitHandler<TRegisterInputsProps> = async (data) => {
     try {
       const { first_name, last_name, email, password } = data;
-      const username = `${first_name} ${last_name}`;
-      const result = await registerUser({ username, email, password });
-      console.log("Registration successful:", result);
+      const name = `${first_name}.${last_name}`;
+
+      await axios.post(`${baseUrl}/auth/register`, {
+        name,
+        email,
+        password,
+      });
+
+      setSuccessMessage("تم التسجيل بنجاح!");
     } catch (err) {
       console.error("Registration failed:", err);
+      setSuccessMessage(null);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {successMessage && (
+        <div className="bg-green-100 text-green-800 p-2 mb-4 rounded">
+          {successMessage}
+        </div>
+      )}
       <div className="mb-4">
         <label className="block text-gray-700 mb-2" htmlFor="first_name">
           الاسم الأول
