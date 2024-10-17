@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from "react-router-dom"; // Updated import
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "@assets/logo2.svg";
 import { ReactNode, useEffect, useState } from "react";
 import { IoMenuSharp } from "react-icons/io5";
@@ -103,7 +103,7 @@ const Header = () => {
             </button>
           ) : (
             <CustomLink link={"/auth/login"} text={"تسجيل الدخول"} />
-          )}{" "}
+          )}
         </div>
       </nav>
     </header>

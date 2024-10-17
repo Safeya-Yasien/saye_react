@@ -16,6 +16,7 @@ const LoginForm = () => {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<TLoginCredentials>();
 
   const onSubmit: SubmitHandler<TLoginCredentials> = async (data) => {
@@ -37,6 +38,13 @@ const LoginForm = () => {
       navigate("/");
     } catch (err) {
       console.error("Login failed:", err);
+      if (axios.isAxiosError(err) && err.response) {
+        if (err.response.data.message === "Invalid password") {
+          setError("password", { message: "كلمة المرور غير صحيحة" });
+        } else {
+          setError("email", { message: "حدث خطأ أثناء تسجيل الدخول" });
+        }
+      }
     }
   };
 
@@ -67,7 +75,6 @@ const LoginForm = () => {
           {...register("password", { required: "كلمة المرور مطلوبة" })}
           className="w-full p-2 border border-gray-300 rounded mb-3 outline-none"
         />
-
         {errors.password && (
           <p className="text-red-500 text-sm">{errors.password?.message}</p>
         )}

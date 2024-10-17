@@ -3,6 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import RegisterSchema from "./RegisterSchema";
 import axios from "axios";
 
@@ -18,7 +19,9 @@ type TRegisterInputsProps = {
 
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -30,6 +33,7 @@ const RegisterForm = () => {
   });
 
   const onSubmit: SubmitHandler<TRegisterInputsProps> = async (data) => {
+    setLoading(true);
     try {
       const { first_name, last_name, email, password } = data;
       const name = `${first_name}.${last_name}`;
@@ -41,9 +45,23 @@ const RegisterForm = () => {
       });
 
       setSuccessMessage("تم التسجيل بنجاح!");
-    } catch (err) {
-      console.error("Registration failed:", err);
-      setSuccessMessage(null);
+      setTimeout(() => {
+        navigate("/auth/login");
+      }, 2000);
+    } catch (err: unknown) {
+      if (axios.isAxiosError(err)) {
+        console.error("Axios error:", err.response?.data);
+        if (err.response?.data?.message === "Email already exists") {
+          setSuccessMessage("هذا البريد الإلكتروني مسجل بالفعل.");
+        } else {
+          setSuccessMessage("حدث خطأ أثناء التسجيل. حاول مرة أخرى.");
+        }
+      } else {
+        console.error("Registration failed:", err);
+        setSuccessMessage("حدث خطأ غير متوقع. حاول مرة أخرى.");
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,6 +72,8 @@ const RegisterForm = () => {
           {successMessage}
         </div>
       )}
+      {loading && <div className="loader">جاري التسجيل...</div>}{" "}
+      {/* Loader display */}
       <div className="mb-4">
         <label className="block text-gray-700 mb-2" htmlFor="first_name">
           الاسم الأول
@@ -72,7 +92,6 @@ const RegisterForm = () => {
           <p className="text-red-500 text-sm">{errors.first_name.message}</p>
         )}
       </div>
-
       <div className="mb-4">
         <label className="block text-gray-700 mb-2" htmlFor="last_name">
           الاسم الأخير
@@ -91,7 +110,6 @@ const RegisterForm = () => {
           <p className="text-red-500 text-sm">{errors.last_name.message}</p>
         )}
       </div>
-
       <div className="mb-4">
         <label className="block text-gray-700 mb-2" htmlFor="email">
           البريد الإلكتروني
@@ -116,7 +134,6 @@ const RegisterForm = () => {
           <p className="text-red-500 text-sm">{errors.email.message}</p>
         )}
       </div>
-
       <div className="mb-4 relative">
         <label className="block text-gray-700 mb-2" htmlFor="password">
           كلمة المرور
@@ -151,7 +168,6 @@ const RegisterForm = () => {
           <p className="text-red-500 text-sm">{errors.password.message}</p>
         )}
       </div>
-
       <div className="mb-4">
         <label className="block text-gray-700 mb-2" htmlFor="confirm_password">
           إعادة تأكيد كلمة المرور
@@ -180,12 +196,12 @@ const RegisterForm = () => {
           </p>
         )}
       </div>
-
       <button
         type="submit"
         className="bg-myGreen-dark text-white p-2 rounded w-full hover:bg-myGreen-hover"
+        disabled={loading}
       >
-        تسجيل
+        {loading ? "جاري التحميل..." : "تسجيل"}
       </button>
     </form>
   );
