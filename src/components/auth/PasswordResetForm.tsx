@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "js-cookie"; // Import js-cookie to access cookies
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -25,9 +26,18 @@ const ResetPassword = () => {
     }
 
     try {
-      const response = await axios.post(`${baseUrl}/reset-password`, {
-        password: data.newPassword,
-      });
+      const token = Cookies.get("token");
+
+      const response = await axios.post(
+        `${baseUrl}/reset-password`,
+        { password: data.newPassword },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
       console.log("Password reset successful:", response.data);
       navigate("/auth/login");
     } catch (err) {
