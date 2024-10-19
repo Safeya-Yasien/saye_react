@@ -10,7 +10,6 @@ import {
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Login, PasswordReset, Register } from "@/pages/auth";
-import ProtectedRoute from "./ProtectedRoute"; // Import the ProtectedRoute component
 
 const router = createBrowserRouter([
   {
@@ -36,31 +35,6 @@ const router = createBrowserRouter([
           {
             path: "reset-password",
             element: <PasswordReset />,
-          },
-        ],
-      },
-      {
-        element: <ProtectedRoute />,
-        children: [
-          {
-            path: "about",
-            element: <About />,
-          },
-          {
-            path: "volunteer-opportunity",
-            element: <VolunteerOpportunity />,
-          },
-          {
-            path: "contact",
-            element: <Contact />,
-          },
-          {
-            path: "donate",
-            element: <Donate />,
-          },
-          {
-            path: "join-us",
-            element: <JoinUs />,
           },
         ],
       },
